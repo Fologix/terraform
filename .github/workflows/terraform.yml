@@ -58,7 +58,7 @@ jobs:
         secret: ${{ secrets.TOKEN }}
         approvers: fologix       
         minimum-approvals: 1
-        issue-title: "Need human validation before apply !"
+        issue-title: "Besoin d une validation humaine appliquer !"
         issue-body: "Please approve or deny the apply"
         exclude-workflow-initiator-as-approver: false
 
