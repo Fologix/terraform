@@ -59,9 +59,9 @@ jobs:
         approvers: Fologix       
         minimum-approvals: 1
         issue-title: "Besoin d une validation humaine appliquer !"
-        issue-body: "STP approve or deny the apply"
+        issue-body: "STP approve ou deny l application"
         exclude-workflow-initiator-as-approver: false
 
-    - name: Terraform Apply
+    - name: 'Terraform Apply'
       run: terraform apply -auto-approve
 
