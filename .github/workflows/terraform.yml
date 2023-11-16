@@ -36,3 +36,19 @@ jobs:
 
     - name: 'Terraform Plan'
       run: terraform plan
+
+    - name: 'Install Infracost'
+      run: |
+        curl -fsSL https://infracost.io/install.sh | sh
+
+    - name: 'Run Infracost'
+      run: |
+        infracost breakdown --path . --format json --out-file /tmp/infracost.json
+      env:
+        INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
+
+    # Optionally, you can add a step to upload the infracost output to GitHub job summary
+    - name: 'Upload Infracost result'
+      run: |
+        infracost output --path /tmp/infracost.json --format github-comment > infracost-comment.md
+        cat infracost-comment.md
