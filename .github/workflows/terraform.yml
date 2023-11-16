@@ -14,12 +14,12 @@ jobs:
     - name: 'Checkout'
       uses: actions/checkout@v2
 
-    - name: Install Python
+    - name: 'Install Python'
       run: |
         sudo apt-get update
         sudo apt-get install -y python3 python3-pip
 
-    - name: install azure cli
+    - name: 'install Azure cli'
       run: pip install azure-cli
 
     - name: 'Login via Azure CLI'
@@ -52,4 +52,16 @@ jobs:
         infracost output --path /tmp/infracost.json --format github-comment > infracost-comment.md
         cat infracost-comment.md
 
+    - name: 'Verif Terraform apply'
+      uses: trstringer/manual-approval@v1
+      with:
+        secret: ${{ secrets.TOKEN }}
+        approvers: fologix         
+        minimum-approvals: 1
+        issue-title: "Need human validation before apply !"
+        issue-body: "Please approve or deny the apply"
+        exclude-workflow-initiator-as-approver: false
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve 
 
