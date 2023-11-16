@@ -39,10 +39,7 @@ jobs:
 
     - name: 'Install Infracost'
       run: |
-        curl -fsSL https://infracost.io/install.sh | sh
-        echo "PATH=$PATH:$(dirname $(which infracost))" >> $GITHUB_ENV
-      env:
-        PATH: ${{ github.workspace }}/bin:$PATH
+        curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh    
 
     - name: 'Run Infracost'
       run: |
