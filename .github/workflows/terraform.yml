@@ -56,7 +56,7 @@ jobs:
       uses: trstringer/manual-approval@v1
       with:
         secret: ${{ secrets.TOKEN }}
-        approvers: fologix       
+        approvers: Fologix       
         minimum-approvals: 1
         issue-title: "Besoin d une validation humaine appliquer !"
         issue-body: "Please approve or deny the apply"
