@@ -1,0 +1,26 @@
+name: 'Terraform CI'
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - '**.tf'
+
+jobs:
+  terraform:
+    name: 'Terraform Init and Validate'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v2
+
+    - name: 'Set up Terraform'
+      uses: hashicorp/setup-terraform@v1
+
+    - name: 'Terraform Init'
+      run: terraform init
+
+    - name: 'Terraform Validate'
+      run: terraform validate
