@@ -33,10 +33,13 @@ jobs:
         helm lint ./vote-app-deployment
 
     - name: 'deployement'
-      run: helm install --dry-run --debug my-vote-app ./vote-app-deployment
+      run: |
+        cd helm
+        helm install --dry-run --debug my-vote-app ./vote-app-deployment
 
     - name: 'recuperer le nom du pod && recupérer le port du conteneur && rediriger le port'
       run: |
+        cd helm
         export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=vote-app-deployment,app.kubernetes.io/instance=my-vote-app" -o jsonpath="{.items[0].metadata.name}")
         export CONTAINER_PORT=$(kubectl get pod --namespace default $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
         kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT

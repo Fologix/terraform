@@ -52,16 +52,16 @@ jobs:
         infracost output --path /tmp/infracost.json --format github-comment > infracost-comment.md
         cat infracost-comment.md
 
-    - name: 'Verif Terraform apply'
-      uses: trstringer/manual-approval@v1
-      with:
-        secret: ${{ secrets.TOKEN }}
-        approvers: Fologix       
-        minimum-approvals: 1
-        issue-title: "Besoin d une validation humaine appliquer !"
-        issue-body: "STP approve ou deny l application"
-        exclude-workflow-initiator-as-approver: false
+#    - name: 'Verif Terraform apply'
+#      uses: trstringer/manual-approval@v1
+#      with:
+#        secret: ${{ secrets.TOKEN }}
+#        approvers: Fologix       
+#        minimum-approvals: 1
+#        issue-title: "Besoin d une validation humaine appliquer !"
+#        issue-body: "STP approve ou deny l application"
+#        exclude-workflow-initiator-as-approver: false
 
     - name: 'Terraform Apply'
-      run: terraform apply -auto-approve
+      run: terraform apply #-auto-approve
 
