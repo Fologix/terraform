@@ -1,0 +1,11 @@
+apiVersion: networking.k8s.io/v1
+kind: TrafficSplit
+metadata:
+  name: my-vote-app-canary-split
+spec:
+  service: azure-vote  
+  backends:
+  - service: my-vote-app-primary 
+    weight: 90
+  - service: my-vote-app-canary  
+    weight: 10
