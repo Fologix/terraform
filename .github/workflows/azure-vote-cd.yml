@@ -28,7 +28,9 @@ jobs:
         sudo snap install kubectl --classic
 
     - name: 'Configure kubectl'
-      run: helm lint ./vote-app-deployment
+      run: | 
+        cd helm
+        helm lint ./vote-app-deployment
 
     - name: 'deployement'
       run: helm install --dry-run --debug my-vote-app ./vote-app-deployment
